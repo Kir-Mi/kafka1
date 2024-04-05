@@ -2,6 +2,7 @@ package com.example.Orders.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.Order;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ public class OrderController {
     private String topic;
 
     @PostMapping
-    public void createOrder(@RequestBody String order) {
+    public void createOrder(@RequestBody Order order) {
         log.info("Заказ принят: {}", order);
         kafkaTemplate.send(topic, order);
     }

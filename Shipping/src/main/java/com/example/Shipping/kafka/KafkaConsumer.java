@@ -3,6 +3,7 @@ package com.example.Shipping.kafka;
 import com.example.Shipping.service.ShippingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.Order;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ public class KafkaConsumer {
     private final ShippingService service;
 
     @KafkaListener(topics = "payed_orders")
-    public void consume(String order) {
+    public void consume(Order order) {
         log.info("Заказ на сборке: {}", order);
         service.payOrder(order);
     }
